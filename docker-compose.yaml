@@ -1,0 +1,160 @@
+version: '2'
+services:
+  mongod0-0:
+    image: mongo:4.4.2
+    command:
+      - "mongod"
+      - "-f"
+      - "/etc/mongod.conf"
+    expose:
+      - 27018
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOD_CPU}
+          memory: ${MONGOD_MEM}
+        reservations:
+          cpus: ${MONGOD_CPU}
+          memory: ${MONGOD_MEM}
+    restart: always
+    volumes:
+      - ${MONGOD0_0}:/data/db
+      - ${MONGOD0_CFG}:/etc/mongod.conf
+  mongod0-1:
+    image: mongo:4.4.2
+    command:
+      - "mongod"
+      - "-f"
+      - "/etc/mongod.conf"
+    expose:
+      - 27018
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOD_CPU}
+          memory: ${MONGOD_MEM}
+        reservations:
+          cpus: ${MONGOD_CPU}
+          memory: ${MONGOD_MEM}
+    restart: always
+    volumes:
+      - ${MONGOD0_1}:/data/db
+      - ${MONGOD0_CFG}:/etc/mongod.conf
+  mongod0-arb:
+    image: mongo:4.4.2
+    command:
+      - "mongod"
+      - "-f"
+      - "/etc/mongod.conf"
+    expose:
+      - 27018
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOD_ARB_CPU}
+          memory: ${MONGOD_ARB_MEM}
+        reservations:
+          cpus: ${MONGOD_ARB_CPU}
+          memory: ${MONGOD_ARB_MEM}
+    restart: always
+    volumes:
+      - ${MONGOD0_ARB}:/data/db
+      - ${MONGOD0_CFG}:/etc/mongod.conf
+  mongocfg-0:
+    image: mongo:4.4.2
+    command:
+      - "mongod"
+      - "-f"
+      - "/etc/mongod.conf"
+    expose:
+      - 27019
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOCFG_CPU}
+          memory: ${MONGOCFG_MEM}
+        reservations:
+          cpus: ${MONGOCFG_CPU}
+          memory: ${MONGOCFG_MEM}
+    restart: always
+    volumes:
+      - ${MONGOCFG_0}:/data/db
+      - ${MONGOCFG_CFG}:/etc/mongod.conf
+  mongocfg-1:
+    image: mongo:4.4.2
+    command:
+      - "mongod"
+      - "-f"
+      - "/etc/mongod.conf"
+    expose:
+      - 27019
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOCFG_CPU}
+          memory: ${MONGOCFG_MEM}
+        reservations:
+          cpus: ${MONGOCFG_CPU}
+          memory: ${MONGOCFG_MEM}
+    restart: always
+    volumes:
+      - ${MONGOCFG_1}:/data/db
+      - ${MONGOCFG_CFG}:/etc/mongod.conf
+  mongocfg-2:
+    image: mongo:4.4.2
+    command:
+      - "mongod"
+      - "-f"
+      - "/etc/mongod.conf"
+    expose:
+      - 27019
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOCFG_CPU}
+          memory: ${MONGOCFG_MEM}
+        reservations:
+          cpus: ${MONGOCFG_CPU}
+          memory: ${MONGOCFG_MEM}
+    restart: always
+    volumes:
+      - ${MONGOCFG_2}:/data/db
+      - ${MONGOCFG_CFG}:/etc/mongod.conf
+  mongos-0:
+    image: mongo:4.4.2
+    ports:
+      - "127.0.0.1:27017:27017"
+    command:
+      - "mongos"
+      - "-f"
+      - "/etc/mongos.conf"
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOS_CPU}
+          memory: ${MONGOS_MEM}
+        reservations:
+          cpus: ${MONGOS_CPU}
+          memory: ${MONGOS_MEM}
+    restart: always
+    volumes:
+      - ${MONGOS_CFG}:/etc/mongos.conf
+  mongos-1:
+    image: mongo:4.4.2
+    ports:
+      - "127.0.0.1:27027:27017"
+    command:
+      - "mongos"
+      - "-f"
+      - "/etc/mongos.conf"
+    deploy:
+      resources:
+        limits:
+          cpus: ${MONGOS_CPU}
+          memory: ${MONGOS_MEM}
+        reservations:
+          cpus: ${MONGOS_CPU}
+          memory: ${MONGOS_MEM}
+    restart: always
+    volumes:
+      - ${MONGOS_CFG}:/etc/mongos.conf
