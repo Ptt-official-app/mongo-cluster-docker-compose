@@ -1,5 +1,5 @@
 # mongo-cluster-docker-compose
-mongo-clluster-docker-compose
+mongo-cluster-docker-compose
 
 ## Docker-compose
 
