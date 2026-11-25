@@ -1,6 +1,8 @@
 #!/bin/bash
 
-docker exec mongo-cluster-docker-compose_mongod0-0_1 mongo localhost:27018 --eval 'rs.initiate({
+cd "$(dirname "$0")/.." || exit 1
+
+docker-compose --env-file docker_compose.env -f docker-compose.yaml exec -T mongod0-0 mongo localhost:27018 --eval 'rs.initiate({
    _id : "mongo0",
    members: [
       { _id: 0, host: "mongod0-0:27018" },
